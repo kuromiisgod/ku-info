@@ -1,0 +1,7 @@
+{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name %}こんにちは、KU-BLOGです!{% endblocktrans %}
+
+{% block content %}{% endblock %}
+
+KU-BLOGをご利用頂きありがとうございます!
+お困りのことなどがございましたら、このメールにご返信ください。
+{% endautoescape %}

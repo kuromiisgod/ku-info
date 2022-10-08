@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+{% block head_title %}投稿検索結果{% endblock %}
+{%block content%}
+<div class="search_post_list">
+    <div class="list_title_2">
+      <h2>'{{keywords}}'の検索結果</h2>
+    </div>
+    {% if posts %}
+      {%for post in posts %}
+      <div class="new_list_card">
+        <div class="card_header">
+          <div class="card_header_title">
+            <h3>{{post.title}}</h3>
+          </div>
+        </div>
+        <div class="card_header_mini">
+          <div class="mini_title">{{post.date}}</div>
+          <div class="mini_title">{{post.place}}</div>
+        </div>
+        <div class="card_content">
+          <p>{{post.content}}</p>
+        </div>
+        <div class="card_more_button">
+          <a href="{%url 'post_one' post.id%}">read more >></a>
+        </div>
+      </div>
+      {%endfor%}
+      <div class="paginator">
+        {% if posts.has_previous %}
+        <a href="?page={{ post_list.previous_page_number }}">&lt; 前のページ</a>
+        {% endif %}
+    
+        {{ posts.number }}ページ
+    
+        {% if posts.has_next %}
+          <a href="?page={{ post_list.next_page_number }}">次のページ &gt;</a>
+        {% endif %}
+      </div>
+    {% else %}
+    <div class="no_post_list_home">
+      <p>'{{keywords}}'に関する投稿はありません。</p>
+    </div>
+    {% endif %}
+</div>
+       
+{%endblock%}

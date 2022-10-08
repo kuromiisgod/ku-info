@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% load rules %}
+{% block head_title %}{{ post.title }}{% endblock %}
+{% block content %}
+<div class="post_one">
+    <div class="post_one_bg container">
+        <div class="post_one_container">
+            <div class="post_one_date">
+                {{ post.date }}
+            </div>
+            <div class="post_one_title">
+                <h1>{{ post.title }}</h1>
+            </div>
+            <div class="post_one_place">
+                <a href="" class="place_link">{{ post.place }}</a>
+            </div>
+            <div class="post_one_content">
+                {{ post.content }}
+            </div>
+            {% has_perm 'is_object_editor' user post as is_object_editor %}
+            {% if is_object_editor %}
+            <div class="post_one_buttons">
+                <a href="{% url 'post_delete' post.id%}" onclick="return confirm('本当に削除しますか');">削除</a>
+                <a href="{% url 'post_edit' post.id%}">編集</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="post_one_green"></div>
+{% endblock %}

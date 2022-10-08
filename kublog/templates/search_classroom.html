@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% block head_title %}教室使用状況{% endblock %}
+{% block content %}
+<div class="container classroom">
+
+    <h2 class="classroom_title">教室使用状況</h2>
+    <div class="classroom_explanation">
+        <p>このページでは、久留米大学御井キャンパスにおける教室使用状況を調べることができます。
+            空き教室を探す際などにご利用ください。
+        </p>
+    </div>
+    <select class="form-select" aria-label="Default select example" onChange="location.href=value;"
+        id="place_selectbox">
+        <option selected value="" disabled style="display:none;">場所を選択してください</option>
+        <option value="?place=0">御井本館</option>
+        <option value="?place=1">500号館</option>
+        <option value="?place=2">600号館</option>
+        <option value="?place=3">700号館</option>
+        <option value="?place=4">800号館</option>
+        <option value="?place=5">1000号館</option>
+    </select>
+    {% if place != 6 %}
+    {% if place == 0 %}
+    <div class="place_explanation">
+        <div class="place_title">御井本館</div>
+        <div class="place_img">
+            <div class="place_img_grid"><img src="../static/kublog/img/本館教室.jpg" alt="本館の外観画像" loading="lazy"></div>
+            <div class="place_img_grid"><img src="../static/kublog/img/本館ラウンジ.jpg" alt="本館の外観画像" loading="lazy"></div>
+            <div class="place_img_grid"><img src="../static/kublog/img/本館外観.jpg" alt="本館の外観画像" loading="lazy"></div>
+            <div class="place_img_grid"><img src="../static/kublog/img/本館ラーニングコモンズ.jpg" alt="本館の外観画像" loading="lazy"></div>
+            <div class="place_img_grid"><img src="../static/kublog/img/本館学生ホール.jpg" alt="本館の外観画像" loading="lazy"></div>
+            <div class="place_img_grid"><img src="../static/kublog/img/本館ラーニングコモンズ２.jpg" style="height: 199px; width:300px;"
+                    alt="本館の外観画像" loading="lazy"></div>
+        </div>
+        <div class="place_text">
+            大教室・ラーニングコモンズ・ラウンジなどがあり、授業・クラブ活動・奨学金・留学・就職に関することなど、学生生活について相談できる体制が充実しています。
+            <br>【会計係】 学納金に関すること<br>【学生課】 証明書の発行、住所変更、奨学金、学生生活などに関すること
+            <br>【教務課】 履修、授業、試験、資格取得などに関すること<br>【国際交流センター事務室】 海外留学、語学研修などに関すること
+            <br>【就職・キャリア支援課（御井本館2階）】 就職、インターンシップ、資格試験などに関すること<br>※1F ファミリーマート（売店）
+        </div>
+    </div>
+    {%endif%}
+    {% if place == 1 %}
+    <div class="place_explanation">
+        <div class="place_title">500号館</div>
+        <div class="place_img_second">
+            <div class="place_img_grid"><img src="../static/kublog/img/500号館.jpg" alt="500号館の外観画像" loading="lazy"></div>
+        </div>
+        <div class="place_text">
+            大教室・ゼミ室などがあり、文学部社会福祉学科の実習用の施設や、健康・スポーツ科学センターの諸施設、保健室や学生相談室も配置されています。
+            建物には、車椅子対応の可動式机などが設置され、バリアフリー化されています。
+        </div>
+    </div>
+    {%endif%}
+    {% if place == 2 %}
+    <div class="place_explanation">
+        <div class="place_title">600号館</div>
+        <div class="place_text">
+            基本的には、授業棟として使われています。
+        </div>
+    </div>
+    {%endif%}
+    {% if place == 3 %}
+    <div class="place_explanation">
+        <div class="place_title">700号館</div>
+        <div class="place_text">
+            基本的には、授業棟として使われています。
+        </div>
+    </div>
+    {%endif%}
+    {% if place == 4 %}
+    <div class="place_explanation">
+        <div class="place_title">800号館</div>
+        <div class="place_img_second">
+            <div class="place_img_grid"><img src="../static/kublog/img/800号館.jpg" alt="800号館の外観画像" loading="lazy"></div>
+        </div>
+        <div class="place_text">
+            大教室・ゼミ室などがある施設で、充実したＬＬ教室をはじめ、ＬＬ自習室や資料室、ＡＶ演習室などを備えています。
+            また、学生の厚生施設として、食堂が2つあります。
+            <br>※2F 彩（食堂）<br>※1F Zip（食堂）
+        </div>
+    </div>
+    {%endif%}
+    {% if place == 5 %}
+    <div class="place_explanation">
+        <div class="place_title">1000号館</div>
+        <div class="place_img_second">
+            <div class="place_img_grid"><img src="../static/kublog/img/1000号館1.jpg" alt="1000号館" loading="lazy"></div>
+            <div class="place_img_grid"><img src="../static/kublog/img/1000号館2.jpg" alt="1000号館" loading="lazy"></div>
+        </div>
+        <div class="place_text">
+            1階から5階までが情報教育センター、6階と7階は心理教育相談センター、ゼミ室、研究室が配置されています。
+            情報教育センターには、最大124名まで利用可能な教室をはじめ大小17の教室があり、パソコンを約1,000台完備しています。
+            開放的なつくりの2階オープン利用室では、学生が好きな時間に自主学習することができ、コンシェルジュが利用相談に対応しています。
+        </div>
+    </div>
+    {%endif%}
+    <select class="form-select" aria-label="Default select example" onChange="location.href=value;" id="day_selectbox">
+        <option selected value="" disabled style="display:none;">曜日を選択してください</option>
+        <option value="?place={{place}}&day=0">月曜日</option>
+        <option value="?place={{place}}&day=1">火曜日</option>
+        <option value="?place={{place}}&day=2">水曜日</option>
+        <option value="?place={{place}}&day=3">木曜日</option>
+        <option value="?place={{place}}&day=4">金曜日</option>
+    </select>
+    {% if day_classroom %}
+    <div class="classroom_time">
+        <div class="classroom_time_one">
+            <div class="classroom_time_title">
+                <h2>1限</h2>
+            </div>
+            {% if day_classroom.１時限 %}
+            <div class="classroom_list">
+                {% for classroom_floor,classroom in day_classroom.１時限.items %}
+                <div class="floor_title">{{classroom_floor}}</div>
+                <p>{{classroom}}</p>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="classroom_list">使用教室はありません。</div>
+            {% endif %}
+
+        </div>
+        <div class="classroom_time_one">
+            <div class="classroom_time_title">
+            <h2>2限</h2>
+            </div>
+            {% if day_classroom.２時限 %}
+            <div class="classroom_list">
+                {% for classroom_floor,classroom in day_classroom.２時限.items %}
+                <div class="floor_title">{{classroom_floor}}</div>
+                <p>{{classroom}}</p>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="classroom_list">使用教室はありません。</div>
+            {% endif %}
+        </div>
+        <div class="classroom_time_one">
+            <div class="classroom_time_title">
+            <h2>3限</h2>
+            </div>
+            {% if day_classroom.３時限 %}
+            <div class="classroom_list">
+                {% for classroom_floor,classroom in day_classroom.３時限.items %}
+                <div class="floor_title">{{classroom_floor}}</div>
+                <p>{{classroom}}</p>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="classroom_list">使用教室はありません。</div>
+            {% endif %}
+        </div>
+        <div class="classroom_time_one">
+            <div class="classroom_time_title">
+            <h2>4限</h2>
+            </div>
+            {% if day_classroom.４時限 %}
+            <div class="classroom_list">
+                {% for classroom_floor,classroom in day_classroom.４時限.items %}
+                <div class="floor_title">{{classroom_floor}}</div>
+                <p>{{classroom}}</p>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="classroom_list">使用教室はありません。</div>
+            {% endif %}
+        </div>
+        <div class="classroom_time_one">
+            <div class="classroom_time_title">
+            <h2>5限</h2>
+            </div>
+            {% if day_classroom.５時限 %}
+            <div class="classroom_list">
+                {% for classroom_floor,classroom in day_classroom.５時限.items %}
+                <div class="floor_title">{{classroom_floor}}</div>
+                <p>{{classroom}}</p>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="classroom_list">使用教室はありません。</div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

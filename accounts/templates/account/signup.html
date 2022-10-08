@@ -1,0 +1,79 @@
+{% extends "account/base.html" %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="signup">
+<h1>{% trans "Sign Up" %}</h1>
+
+<form class="" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  <div class="form_set">
+    <label for="id_email">メールアドレス</label>
+    {% if form.email.errors %}
+      {% render_field form.email class="form_information_input_invalid" id="id_email" %}
+      {% for error in form.email.errors %}
+      <div class="error-message">
+        {{ error }}
+      </div>
+      {% endfor %}
+    {% else %}
+      {% render_field form.email class="form_information_input" id="id_email" %}
+    {% endif %}
+  </div>
+  <div class="form_set">
+    <label for="id_username">ユーザー名</label>
+    {% if form.username.errors %}
+      {% render_field form.username class="form_information_input_invalid" id="id_username" %}
+      {% for error in form.username.errors %}
+      <div class="error-message">
+        {{ error }}
+      </div>
+      {% endfor %} 
+    {% else %} 
+      {% render_field form.username class="form_information_input" id="id_username" %}
+    {% endif %}
+  </div>
+  <div class="form_set">
+    <label for="id_password1">パスワード</label>
+    {% if form.password1.errors %}
+      {% render_field form.password1 class="form_information_input_invalid" id="id_password1" %}
+      {% for error in form.password1.errors %}
+      <div class="error-message">
+        {{ error }}
+      </div>
+      {% endfor %}
+    {% else %}
+      {% render_field form.password1 class="form_information_input" id="id_password1" %}
+    {% endif %}  
+  </div>
+  <div class="form_set">
+    <label for="id_password2">パスワード(確認用）</label>
+    {% if form.password2.errors %}
+      {% render_field form.password2 class="form_information_input_invalid" id="id_password2" %}
+      {% for error in form.password2.errors %}
+      <div class="error-message">
+        {{ error }}
+      </div>
+      {% endfor %}
+    {% else %}
+      {% render_field form.password2 class="form_information_input" id="id_password2" %}
+    {% endif %}
+  </div>
+
+  {{ form.non_field_errors }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  
+  <div class="normal_button" >
+    <button type="submit" id="sign_up_button">{% trans "Sign Up" %} &raquo;</button>
+  </div>
+  <div class="already_account_message">
+    <p>アカウントをお持ちの方は、こちらから<a href="{{ login_url }}">ログイン</a>してください</p>
+  </div>
+</form>
+</div>
+{% endblock %}

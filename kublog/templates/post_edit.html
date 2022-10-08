@@ -1,0 +1,98 @@
+{% extends 'base.html'%}
+{% load widget_tweaks %}
+{% block head_title %}投稿編集{% endblock %}
+{% block content %}
+<div class="form">
+    <h2>投稿編集</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form_set">
+            <label for="id_title">タイトル</label>
+            {% if form.title.errors %}
+            {% render_field form.title class="form_information_input_invalid" id="id_title" %}
+            {% for error in form.title.errors %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endfor %}
+            {% else %}
+            {% render_field form.title class="form_information_input" id="id_title" value="{{post.title}}"%}
+            {% endif %}
+        </div>
+        <div class="form_set">
+            <label for="id_place">場所</label>
+            <select name="place" required="" id="id_place" class="form_information_input">
+                <option value="{{post.place}}">{{post.place}}</option>
+              
+                <option value="食堂">食堂</option>
+              
+                <option value="500号館">500号館</option>
+              
+                <option value="600号館">600号館</option>
+              
+                <option value="700号館">700号館</option>
+              
+                <option value="800号館">800号館</option>
+              
+                <option value="900号館">900号館</option>
+              
+                <option value="1000号館">1000号館</option>
+              
+                <option value="御井本館">御井本館</option>
+              
+                <option value="御井図書館">御井図書館</option>
+              
+                <option value="第1学生部室棟">第1学生部室棟</option>
+              
+                <option value="第2学生部室棟">第2学生部室棟</option>
+              
+                <option value="御井学館">御井学館</option>
+              
+                <option value="御井学生会館">御井学生会館</option>
+              
+                <option value="千歳会館">千歳会館</option>
+              
+                <option value="第2体育館">第2体育館</option>
+              
+                <option value="第3学生部室棟">第3学生部室棟</option>
+              
+                <option value="テニスコート">テニスコート</option>
+              
+                <option value="インターナショナル・ハウス">インターナショナル・ハウス</option>
+              
+                <option value="みいアリーナ">みいアリーナ</option>
+              
+                <option value="学生寮">学生寮</option>
+              
+                <option value="駐輪場">駐輪場</option>
+              
+                <option value="グラウンド">グラウンド</option>
+              
+                <option value="弓道場">弓道場</option>
+              
+                <option value="茶室">茶室</option>
+              
+                <option value="器楽室">器楽室</option>
+              
+              </select>
+        </div>
+        <div class="form_set">
+            <label for="id_content">内容</label>
+            {% if form.content.errors %}
+            {% render_field form.content class="form_information_input_invalid" id="id_content" %}
+            {% for error in form.content.errors %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endfor %}
+            {% else %}
+            {% render_field form.content class="form_information_input" id="id_content" %}
+            {% endif %}
+        </div>
+        {{ form.non_field_errors }}
+        <div class="normal_button">
+            <button type="submit" onclick="return confirm('変更してよろしいですか')">変更する</button>
+        </div>
+    </form>
+    </div>
+{% endblock %}

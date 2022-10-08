@@ -1,0 +1,16 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+
+{% block content %}
+    <div class="verification_email">
+    <h1>{% trans "Verify Your E-mail Address" %}</h1>
+
+    <p>登録されたメールアドレスにメール認証のためのメッセージを送りました。<br>
+        メッセージにあるリンクからユーザー登録を完了させてください。<br>
+        もし、メール認証のメッセージがメールボックスにない場合は、迷惑メールのボックスを確認してください。<br>
+        それでもメッセージが届かない場合は、<a href="{% url 'contact_form' %}">お問い合わせ</a>ください。</p>
+    </div>
+{% endblock %}

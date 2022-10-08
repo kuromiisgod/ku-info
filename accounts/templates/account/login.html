@@ -1,0 +1,69 @@
+{% extends "account/base.html" %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+
+
+{% include "socialaccount/snippets/login_extra.html" %}
+<div class="form">
+<form method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  <h1 class="list_title">ログイン</h1>
+  <div class="form_set">
+    <label for="id_login">メールアドレス</label>
+    {% if form.login.errors %}
+    {% render_field form.login class="form_information_input_invalid" id="id_login" autocomplete="email" placeholder="" %}
+    {% for error in form.login.errors %}
+    <div class="error-message">
+        {{ error }}
+    </div>
+    {% endfor %}
+    {% else %}
+    {% render_field form.login class="form_information_input" id="id_login" autocomplete="email" placeholder=""%}
+    {% endif %}
+  </div>
+  <div class="form_set">
+    <label for="id_password">パスワード</label>
+    {% if form.password.errors %}
+    {% render_field form.password class="form_information_input_invalid" id="id_password" autocomplete="password" placeholder=""%}
+    {% for error in form.password.errors %}
+    <div class="error-message">
+        {{ error }}
+    </div>
+    {% endfor %}
+    {% else %}
+    {% render_field form.password class="form_information_input" id="id_password" autocomplete="password" placeholder="" %}
+    {% endif %}
+
+  </div>
+  {{ form.non_field_errors }}
+
+
+  <div class="socialaccount_ballot">
+      {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </div>
+  <div id="continue_login">
+    <label for="id_remember">ログインしたままにする:</label>
+    {% render_field form.remember id="id_remember" type="checkbox" %}
+  </div>
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  
+  <div class="normal_button">
+    <button class="primaryAction normal_button_login" type="submit">{% trans "Sign In" %}</button>
+  </div>
+  <div class="normal_button">
+    <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  </div> 
+  <div class="normal_button" id="create_account_button">
+    <a href="{{ signup_url }}">アカウントを作成する</a>
+  </div>
+</form>
+</div>
+{% endblock %}

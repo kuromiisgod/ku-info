@@ -1,0 +1,5 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% user_display user as user_display %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}{{ user_display }}としてKU-BLOGにこのメールアドレスで登録しようとしています。問題がなければ、確認のため以下のURLをクリックしてください。 {{ activate_url }}{% endblocktrans %}{% endautoescape %}{% endblock %}

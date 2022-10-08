@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+{% block head_title %}投稿一覧{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="search_post_list">
+        <div class="list_title">
+            <h2>{{keywords}}の投稿一覧</h2>
+        </div>
+        {%for post in post_list %}
+        <div class="new_list_card">
+          <div class="card_header">
+            <div class="card_header_title">
+              <h3>{{post.title}}</h3>
+            </div>
+          </div>
+          <div class="card_header_mini">
+            <div class="mini_title">{{post.date}}</div>
+            <div class="mini_title">{{post.place}}</div>
+          </div>
+          <div class="card_content">
+            <p>{{post.content | truncatechars:80}}</p>
+          </div>
+          <div class="card_more_button">
+            <a href="{%url 'post_one' post.id%}">read more >></a>
+          </div>
+        </div>
+        {%endfor%}
+        <div class="paginator">
+          {% if post_list.has_previous %}
+          <a href="?page={{ post_list.previous_page_number }}">&lt; 前のページ</a>
+          {% else %}
+          <span>&lt; 前のページ</span>
+          {% endif %}
+      
+          {{ post_list.number }}ページ
+      
+          {% if post_list.has_next %}
+          <a href="?page={{ post_list.next_page_number }}">次のページ &gt;</a>
+          {% else %}
+          <span>次のページ &gt;</span>
+          {% endif %}
+        </div>
+      </div>
+    
+</div>    
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block head_title %}お問い合わせ{% endblock %}
+{% block content %}
+<div class="form">
+    <h2>Contact</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form_set">
+            <label for="id_contact_name">お名前</label>
+            {% if form.contact_name.errors %}
+            {% render_field form.contact_name class="form_information_input_invalid" id="id_contact_name" %}
+            {% for error in form.contact_name.errors %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endfor %}
+            {% else %}
+            {% render_field form.contact_name class="form_information_input" id="id_contact_name" %}
+            {% endif %}
+        </div>
+        <div class="form_set">
+            <label for="id_contact_email">メールアドレス</label>
+            {% if form.contact_email.errors %}
+            {% render_field form.contact_email class="form_information_input_invalid" id="id_contact_email" %}
+            {% for error in form.contact_email.errors %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endfor %}
+            {% else %}
+            {% render_field form.contact_email class="form_information_input" id="id_contact_email" %}
+            {% endif %}
+        </div>
+        <div class="form_set">
+            <label for="id_contact_message">問い合わせ内容</label>
+            {% if form.contact_message.errors %}
+            {% render_field form.contact_message class="form_information_input_invalid" id="id_contact_message" %}
+            {% for error in form.contact_message.errors %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endfor %}
+            {% else %}
+            {% render_field form.contact_message class="form_information_input" id="id_contact_message" %}
+            {% endif %}
+        </div>
+        {{ form.non_field_errors }}
+        <div class="normal_button">
+            <button type="submit" onclick="return confirm('送信してよろしいですか')">送信</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
