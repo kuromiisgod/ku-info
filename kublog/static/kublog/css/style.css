@@ -530,7 +530,7 @@ textarea::-webkit-scrollbar-thumb{
 }
 #sign_up_button{
     width: 150px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 /* logout */
